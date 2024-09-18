@@ -45,23 +45,6 @@ export default function App() {
     },
   });
 
-  const onTapHandler = (event) => {
-    if (event.nativeEvent.state === State.ACTIVE) {
-      focusOnPoint(event.nativeEvent);
-    }
-  };
-
-  const focusOnPoint = (event) => {
-    if (cameraRef.current) {
-      const { locationX, locationY } = event;
-      const touchPoint = {
-        x: locationX,
-        y: locationY,
-      };
-      cameraRef.current.focus(touchPoint);
-    }
-  };
-
   if (!permission) {
     return <View />;
   }
@@ -87,7 +70,7 @@ export default function App() {
     <GestureHandlerRootView style={styles.container}>
       <PinchGestureHandler onGestureEvent={pinchHandler}>
         <Animated.View style={styles.container}>
-          <TapGestureHandler onHandlerStateChange={onTapHandler}>
+          
             <AnimatedCameraView
               ref={cameraRef}
               style={styles.camera}
@@ -106,7 +89,7 @@ export default function App() {
                 </TouchableOpacity>
               </View>
             </AnimatedCameraView>
-          </TapGestureHandler>
+          
         </Animated.View>
       </PinchGestureHandler>
     </GestureHandlerRootView>
